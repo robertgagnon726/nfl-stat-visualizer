@@ -1,4 +1,4 @@
-import { ADD_CLICKED_COLUMN, ADD_DATA_POINT, REMOVE_CLICKED_COLUMN, SET_CHART_DATA_LOADING, SET_FORMATTED_DATA, SET_VISIBLE_STROKES } from "../../util/actionTypes";
+import { ADD_CLICKED_COLUMN, ADD_DATA_POINT, REMOVE_CLICKED_COLUMN, SET_CHART_DATA_LOADING, SET_FORMATTED_DATA, SET_RANDOM_DATA, SET_VISIBLE_STROKES } from "../../util/actionTypes";
 import convertData from "../../util/convertData";
 
 /**
@@ -59,4 +59,13 @@ export const removeClickedColumn = (clicked) => ({
 export const setVisibleStrokes = (strokes) => ({
   type: SET_VISIBLE_STROKES,
   payload: strokes
+})
+
+/**
+ * Sets the randomized data for the charts to use while loading
+ * @param {array} data 
+ */
+export const setRandomData = (data) => ({
+  type: SET_RANDOM_DATA,
+  payload: data
 })

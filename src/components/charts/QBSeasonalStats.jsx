@@ -15,7 +15,9 @@ const toolTipStyle = {
 }
 
 export default function QBSeasonalStats({ type }) {
-  const data = useSelector(state => state.chartData.formattedData)
+  const data = useSelector(state => state.chartData.formattedData);
+  const randomData = useSelector(state => state.chartData.randomData);
+  const loading = useSelector(state => state.chartData.loading);
   const clicked = useSelector(state => state.chartData.clicked);
   const visibleStrokes = useSelector(state => state.chartData.visibleStrokes);
   const dispatch = useDispatch();
@@ -45,7 +47,7 @@ export default function QBSeasonalStats({ type }) {
         id="line-chart"
         width={width} 
         height={height} 
-        data={data} 
+        data={loading ? randomData : data} 
         margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
         onClick={(e) => handleChartClick(e)}
       >
@@ -78,7 +80,7 @@ export default function QBSeasonalStats({ type }) {
           id="bar-chart"
           height={height}
           width={width}
-          data={data}
+          data={loading ? randomData : data} 
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
           onClick={(e) => handleChartClick(e)}
         >
