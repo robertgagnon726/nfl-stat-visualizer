@@ -1,6 +1,3 @@
-/// 
-
-
 describe('Main End to End Tests', () => {
   beforeEach(() => {
     cy.intercept('https://scrambled-api.mysportsfeeds.com/v2.1/pull/nfl/**').as('getSeasonStats');
@@ -108,7 +105,6 @@ describe('Main End to End Tests', () => {
           .invoke('attr', 'fill')
           .then(($style1) => {
             firstColor = $style1
-            console.log(firstColor)
           })
         cy.get(".recharts-rectangle:first").click({force: true});
 
@@ -145,7 +141,7 @@ describe('Main End to End Tests', () => {
         })
 
         cy.get('.recharts-rectangle').then(res => {
-          expect(res.length).to.eq(36)
+          expect(res.length).to.be.gt(35)
         })
 
         cy.contains('tom-brady').click()

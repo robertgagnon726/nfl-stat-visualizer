@@ -1,21 +1,24 @@
 import {call, put, select, fork, join } from "@redux-saga/core/effects";
-import axios from "axios";
+import getPlayerSingleSeasonYards from "../../apiCalls/getPlayerSingleSeasonYards";
 import { addDataPoint, setChartDataLoading, setFormattedData } from "../actions";
-
-// This is a free api key. I wouldn't normally leave this in the codebase but I am this time to allow easier local deployment
-const encryptedKey = 'MGYxNTAwMGItM2ZlYy00ZjY5LTgyNGYtNDg2NTllOk1ZU1BPUlRTRkVFRFM'
-axios.defaults.headers.common['Authorization'] = `Basic ${encryptedKey}`
 
 /**
  * Gets a single player's yards for a single season
  * @param {string} player 
  * @param {string|number} season 
  */
-export function* getPlayerSingleSeasonYards(player, season) {
+export function* getSingleSeasonYards(player, season) {
   try {
-    const response = yield call(axios, `https://scrambled-api.mysportsfeeds.com/v2.1/pull/nfl/${season}-regular/player_stats_totals.json?player=${player}`);
+    const response = yield call(getPlayerSingleSeasonYards, player, season);
 
-    const data = response.data.playerStatsTotals[0].stats.passing.passYards;
+    let data;
+
+    if (response.data.playerStatsTotals[0]) {
+      data = response.data.playerStatsTotals[0].stats.passing.passYards;
+    } else {
+      data = 0
+    }
+
     const lineChart = yield select(state => state.chartData.lineChart);
 
     let stagedLC = { ...lineChart };
@@ -40,7 +43,7 @@ export function* chartDataSaga() {
   let obj = Object.keys(lineChart);
   for (let i = 0; i < obj.length; i++) {  
     for (let j = 0; j < Object.keys(lineChart[obj[i]]).length; j++) {
-      let task = yield fork(getPlayerSingleSeasonYards, Object.keys(lineChart[obj[i]])[j], obj[i]);
+      let task = yield fork(getSingleSeasonYards, Object.keys(lineChart[obj[i]])[j], obj[i]);
       tasks.push(task)
     }
   }

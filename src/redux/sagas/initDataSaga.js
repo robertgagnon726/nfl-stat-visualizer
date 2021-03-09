@@ -7,13 +7,15 @@ import { setRandomData } from '../actions';
  * Sets loading data for application loading chart effect
  */
 export function* initDataSaga() {
-  const loading = yield select(state => state.chartData.loading);
+  let loading = true
 
-  while (loading) {
+  do {
     const randomData = randomizeData();
     const formattedData = convertData(randomData);
 
     yield put(setRandomData(formattedData))
     yield delay(1000)
-  }
+    loading = yield select(state => state.chartData.loading);
+  } while (loading)
+
 }

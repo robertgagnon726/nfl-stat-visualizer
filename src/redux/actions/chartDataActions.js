@@ -1,4 +1,4 @@
-import { ADD_CLICKED_COLUMN, ADD_DATA_POINT, REMOVE_CLICKED_COLUMN, SET_CHART_DATA_LOADING, SET_FORMATTED_DATA, SET_RANDOM_DATA, SET_VISIBLE_STROKES } from "../../util/actionTypes";
+import { ADD_CLICKED_COLUMN, ADD_DATA_POINT, REMOVE_CLICKED_COLUMN, SET_CHART_DATA_LOADING, SET_FORMATTED_DATA, SET_PLAYERS, SET_RANDOM_DATA, SET_VISIBLE_STROKES } from "../../util/actionTypes";
 import convertData from "../../util/convertData";
 
 /**
@@ -68,4 +68,13 @@ export const setVisibleStrokes = (strokes) => ({
 export const setRandomData = (data) => ({
   type: SET_RANDOM_DATA,
   payload: data
+})
+
+/**
+ * Sets the players in the redux store
+ * @param {array} players 
+ */
+export const setPlayers = (players) => ({
+  type: SET_PLAYERS,
+  payload: players
 })

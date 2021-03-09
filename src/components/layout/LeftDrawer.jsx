@@ -7,6 +7,7 @@ import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 import { drawerWidth } from '../../util/config';
 import { setPageView } from '../../redux/actions';
+import AddPlayerInput from '../inputs/AddPlayerInput';
 
 const useStyles = makeStyles(() => ({
   drawer: {
@@ -89,6 +90,9 @@ export default function LeftDrawer() {
               <ListItemText secondary={item.displayName} />
             </ListItem>
           ))}
+          <ListItem>
+            <AddPlayerInput />
+          </ListItem>
         </List>
       </Drawer>
   )

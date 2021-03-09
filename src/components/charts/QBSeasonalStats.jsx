@@ -4,7 +4,6 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, Tooltip, Bar, Bar
 import PropTypes from 'prop-types';
 
 import { addClickedColumn, removeClickedColumn, setVisibleStrokes } from '../../redux/actions';
-import { players } from '../../util/config';
 import CustomizedDot from './CustomizedDot';
 
 const height = 500;
@@ -17,9 +16,11 @@ const toolTipStyle = {
 export default function QBSeasonalStats({ type }) {
   const data = useSelector(state => state.chartData.formattedData);
   const randomData = useSelector(state => state.chartData.randomData);
+  const players = useSelector(state => state.chartData.players);
   const loading = useSelector(state => state.chartData.loading);
   const clicked = useSelector(state => state.chartData.clicked);
   const visibleStrokes = useSelector(state => state.chartData.visibleStrokes);
+
   const dispatch = useDispatch();
 
   const handleChartClick = (e) => {

@@ -6,6 +6,7 @@ import LeftDrawer from './components/layout/LeftDrawer';
 import ViewController from './components/layout/ViewController';
 import LoadingBackdrop from './components/layout/LoadingBackdrop';
 import Header from "./components/layout/Header";
+import ErrorDialog from './components/layout/ErrorDialog';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -26,6 +27,7 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       <LoadingBackdrop />
+      <ErrorDialog />
       <Header />
       <LeftDrawer />
       <main className={classes.content}>

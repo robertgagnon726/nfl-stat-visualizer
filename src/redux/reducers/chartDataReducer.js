@@ -1,4 +1,12 @@
-import { ADD_CLICKED_COLUMN, ADD_DATA_POINT, REMOVE_CLICKED_COLUMN, SET_CHART_DATA_LOADING, SET_FORMATTED_DATA, SET_RANDOM_DATA, SET_VISIBLE_STROKES } from "../../util/actionTypes";
+import { 
+  ADD_CLICKED_COLUMN, 
+  ADD_DATA_POINT, 
+  REMOVE_CLICKED_COLUMN, 
+  SET_CHART_DATA_LOADING, 
+  SET_FORMATTED_DATA, 
+  SET_PLAYERS, 
+  SET_RANDOM_DATA, 
+  SET_VISIBLE_STROKES } from "../../util/actionTypes";
 import { players } from "../../util/config";
 import { setInitialLineChart, setInitialVisibleStrokes } from "../../util/setInitialState";
 
@@ -8,7 +16,8 @@ const defaultState = {
   clicked: [],
   visibleStrokes: setInitialVisibleStrokes(players),
   formattedData: [],
-  randomData: []
+  randomData: [],
+  players: players
 };
 
 /**
@@ -34,7 +43,9 @@ export default function chartDataReducer(state = defaultState, action) {
     case SET_VISIBLE_STROKES:
       return {...state, visibleStrokes: {...action.payload}};
     case SET_RANDOM_DATA:
-      return {...state, randomData: [...action.payload]}
+      return {...state, randomData: [...action.payload]};
+    case SET_PLAYERS:
+      return {...state, players: [...action.payload]}
     default:
       return state;
   }
