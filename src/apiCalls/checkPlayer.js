@@ -6,7 +6,8 @@ import axios from "axios";
  */
 export default function checkPlayer(player) {
   try {
-  const encryptedKey = 'MGYxNTAwMGItM2ZlYy00ZjY5LTgyNGYtNDg2NTllOk1ZU1BPUlRTRkVFRFM='
+    
+  const encryptedKey = 'ZjA2YmMyOWYtMmNlMi00MjA2LTg0NTktNmQwNzJhOk1ZU1BPUlRTRkVFRFM='
   axios.defaults.headers.common['Authorization'] = `Basic ${encryptedKey}`
 
   return axios.get(

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // This is a free api key. I wouldn't normally leave this in the codebase but I am this time to allow easier local deployment
-const encryptedKey = 'MGYxNTAwMGItM2ZlYy00ZjY5LTgyNGYtNDg2NTllOk1ZU1BPUlRTRkVFRFM='
+const encryptedKey = 'ZjA2YmMyOWYtMmNlMi00MjA2LTg0NTktNmQwNzJhOk1ZU1BPUlRTRkVFRFM='
 axios.defaults.headers.common['Authorization'] = `Basic ${encryptedKey}`
 
 /**
